@@ -9,13 +9,11 @@ import net.minecraft.util.Identifier;
 public class AgricultureMod implements ModInitializer {
 
     private static final Item CORN = new CornItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
-
+    private static final Item TOMATO = new TomatoItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
 	@Override
 	public void onInitialize() {
 	    Registry.register(Registry.ITEM, new Identifier("agriculture", "corn"), CORN);
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
+        Registry.register(Registry.ITEM, new Identifier("agriculture", "tomato"), TOMATO);
 
 		System.out.println("bean time");
 	}
