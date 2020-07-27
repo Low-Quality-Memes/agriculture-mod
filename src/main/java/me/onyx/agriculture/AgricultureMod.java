@@ -10,10 +10,12 @@ public class AgricultureMod implements ModInitializer {
 
     private static final Item CORN = new CornItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
     private static final Item TOMATO = new TomatoItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
+    private static final Item STRAWBERRY = new StrawberryItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
 	@Override
 	public void onInitialize() {
 	    Registry.register(Registry.ITEM, new Identifier("agriculture", "corn"), CORN);
         Registry.register(Registry.ITEM, new Identifier("agriculture", "tomato"), TOMATO);
+        Registry.register(Registry.ITEM, new Identifier("agriculture", "strawberry"), STRAWBERRY);
 
 		System.out.println("bean time");
 	}
