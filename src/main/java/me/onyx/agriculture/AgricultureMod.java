@@ -24,7 +24,7 @@ public class AgricultureMod implements ModInitializer {
 	public void onInitialize() {
         Registry.register(Registry.ITEM, new Identifier("agriculture", "tomato"), TOMATO);
         Registry.register(Registry.ITEM, new Identifier("agriculture", "strawberry"), STRAWBERRY);
-        Registry.register(Registry.BLOCK, new Identifier("agriculture", "corn_crop"), CORN_CROP);
-        Registry.register(Registry.ITEM, new Identifier("agriculture", "corn_crop"), new BlockItem(CORN_CROP, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
+        Registry.register(Registry.BLOCK, new Identifier("agriculture", "corn_crop.json"), CORN_CROP);
+        Registry.register(Registry.ITEM, new Identifier("agriculture", "corn_crop.json"), new BlockItem(CORN_CROP, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
 	}
 }
