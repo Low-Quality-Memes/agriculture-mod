@@ -1,4 +1,4 @@
-package me.onyx.agriculture;
+package me.onyx.agriculture.items;
 
 import net.minecraft.item.Item;
 

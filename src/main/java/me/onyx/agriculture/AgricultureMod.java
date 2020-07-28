@@ -1,5 +1,8 @@
 package me.onyx.agriculture;
 
+import me.onyx.agriculture.items.CornItem;
+import me.onyx.agriculture.items.StrawberryItem;
+import me.onyx.agriculture.items.TomatoItem;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
