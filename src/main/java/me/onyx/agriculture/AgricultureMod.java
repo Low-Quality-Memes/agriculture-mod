@@ -20,13 +20,11 @@ import net.minecraft.util.Identifier;
 public class AgricultureMod implements ModInitializer {
 
     public static final PlantBlock TOMATO = new Tomato(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().sounds(BlockSoundGroup.LILY_PAD).nonOpaque());
-    //public static final Item STRAWBERRY = new StrawberryItem(new Item.Settings().group(ItemGroup.FOOD).maxCount(64));
     public static final CropBlock CORN_CROP = new CornCrop(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque());
 	@Override
 	public void onInitialize() {
         Registry.register(Registry.BLOCK, new Identifier("agriculture", "tomato"), TOMATO);
         Registry.register(Registry.ITEM, new Identifier("agriculture", "tomato"), new BlockItem(TOMATO, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
-        //Registry.register(Registry.ITEM, new Identifier("agriculture", "strawberry"), STRAWBERRY);
         Registry.register(Registry.BLOCK, new Identifier("agriculture", "corn_crop"), CORN_CROP);
         Registry.register(Registry.ITEM, new Identifier("agriculture", "corn_crop"), new BlockItem(CORN_CROP, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
         BlockRenderLayerMap.INSTANCE.putBlock(AgricultureMod.CORN_CROP, RenderLayer.getCutout());
