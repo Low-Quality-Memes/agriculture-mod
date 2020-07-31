@@ -34,38 +34,37 @@ public class Tomato extends PlantBlock implements Fertilizable {
 
     public Tomato(AbstractBlock.Settings settings) {
         super(settings);
-        this.setDefaultState((BlockState)((BlockState)this.stateManager.getDefaultState()).with(AGE, 0));
+        this.setDefaultState(this.stateManager.getDefaultState().with(AGE, 0));
     }
 
     @Environment(EnvType.CLIENT)
     public ItemStack getPickStack(BlockView world, BlockPos pos, BlockState state) {
-        //return new ItemStack(Items.SWEET_BERRIES);
         return new ItemStack(AgricultureMod.TOMATO);
     }
 
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        if ((Integer)state.get(AGE) == 0) {
+        if (state.get(AGE) == 0) {
             return SMALL_SHAPE;
         } else {
-            return (Integer)state.get(AGE) < 3 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
+            return state.get(AGE) < 3 ? LARGE_SHAPE : super.getOutlineShape(state, world, pos, context);
         }
     }
 
     public boolean hasRandomTicks(BlockState state) {
-        return (Integer)state.get(AGE) < 3;
+        return state.get(AGE) < 3;
     }
 
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        int i = (Integer)state.get(AGE);
+        int i = state.get(AGE);
         if (i < 3 && random.nextInt(5) == 0 && world.getBaseLightLevel(pos.up(), 0) >= 9) {
-            world.setBlockState(pos, (BlockState)state.with(AGE, i + 1), 2);
+            world.setBlockState(pos, state.with(AGE, i + 1), 2);
         }
     }
 
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity && entity.getType() != EntityType.FOX && entity.getType() != EntityType.BEE) {
             entity.slowMovement(state, new Vec3d(0.800000011920929D, 0.75D, 0.800000011920929D));
-            if (!world.isClient && (Integer)state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
+            if (!world.isClient && state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.lastRenderX);
                 double e = Math.abs(entity.getZ() - entity.lastRenderZ);
             }
@@ -74,15 +73,15 @@ public class Tomato extends PlantBlock implements Fertilizable {
     }
 
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        int i = (Integer)state.get(AGE);
+        int i = state.get(AGE);
         boolean bl = i == 3;
         if (!bl && player.getStackInHand(hand).getItem() == Items.BONE_MEAL) {
             return ActionResult.PASS;
         } else if (i > 1) {
             int j = 1 + world.random.nextInt(2);
             dropStack(world, pos, new ItemStack(AgricultureMod.TOMATO, j + (bl ? 1 : 0)));
-            world.playSound((PlayerEntity)null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
-            world.setBlockState(pos, (BlockState)state.with(AGE, 1), 2);
+            world.playSound(null, pos, SoundEvents.ITEM_SWEET_BERRIES_PICK_FROM_BUSH, SoundCategory.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);
+            world.setBlockState(pos, state.with(AGE, 1), 2);
             return ActionResult.success(world.isClient);
         } else {
             return super.onUse(state, world, pos, player, hand, hit);
@@ -94,7 +93,7 @@ public class Tomato extends PlantBlock implements Fertilizable {
     }
 
     public boolean isFertilizable(BlockView world, BlockPos pos, BlockState state, boolean isClient) {
-        return (Integer)state.get(AGE) < 3;
+        return state.get(AGE) < 3;
     }
 
     public boolean canGrow(World world, Random random, BlockPos pos, BlockState state) {
@@ -102,8 +101,8 @@ public class Tomato extends PlantBlock implements Fertilizable {
     }
 
     public void grow(ServerWorld world, Random random, BlockPos pos, BlockState state) {
-        int i = Math.min(3, (Integer)state.get(AGE) + 1);
-        world.setBlockState(pos, (BlockState)state.with(AGE, i), 2);
+        int i = Math.min(3, state.get(AGE) + 1);
+        world.setBlockState(pos, state.with(AGE, i), 2);
     }
 
     static {
