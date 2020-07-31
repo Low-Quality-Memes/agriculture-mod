@@ -68,9 +68,6 @@ public class Tomato extends PlantBlock implements Fertilizable {
             if (!world.isClient && (Integer)state.get(AGE) > 0 && (entity.lastRenderX != entity.getX() || entity.lastRenderZ != entity.getZ())) {
                 double d = Math.abs(entity.getX() - entity.lastRenderX);
                 double e = Math.abs(entity.getZ() - entity.lastRenderZ);
-//                if (d >= 0.003000000026077032D || e >= 0.003000000026077032D) {
-//                    entity.damage(DamageSource.SWEET_BERRY_BUSH, 1.0F);
-//                }
             }
 
         }
