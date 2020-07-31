@@ -19,7 +19,7 @@ import net.minecraft.util.Identifier;
 
 public class AgricultureMod implements ModInitializer {
 
-    public static final PlantBlock TOMATO = new Tomato(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().sounds(BlockSoundGroup.LILY_PAD).nonOpaque());
+    public static final PlantBlock TOMATO = new Tomato(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().sounds(BlockSoundGroup.CROP).nonOpaque());
     public static final CropBlock CORN_CROP = new CornCrop(AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque());
 	@Override
 	public void onInitialize() {
