@@ -1,5 +1,5 @@
 {
-  "item.agriculture.tomato" : "Tomato",
+  "block.agriculture.tomato" : "Tomato",
   "item.agriculture.strawberry": "Strawberry",
   "block.agriculture.corn_crop" : "Corn"
 }
