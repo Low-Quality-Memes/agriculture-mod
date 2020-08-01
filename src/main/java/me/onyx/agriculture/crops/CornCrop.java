@@ -3,10 +3,15 @@ package me.onyx.agriculture.crops;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.block.*;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import static me.onyx.agriculture.AgricultureMod.CORN_CROP;
 
@@ -23,6 +28,15 @@ public class CornCrop extends CropBlock {
 
     public CornCrop(AbstractBlock.Settings settings) {
         super(settings);
+    }
+
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient) {
+            world.breakBlock(pos, true);
+        }
+
+        return ActionResult.SUCCESS;
     }
 
     @Environment(EnvType.CLIENT)
