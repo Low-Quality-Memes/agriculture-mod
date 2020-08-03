@@ -31,13 +31,6 @@ public class CornCrop extends CropBlock {
     }
 
     @Override
-    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (!world.isClient) {
-            world.breakBlock(pos, true);
-        }
-
-        return ActionResult.SUCCESS;
-    }
 
     @Environment(EnvType.CLIENT)
     protected ItemConvertible getSeedsItem() {
