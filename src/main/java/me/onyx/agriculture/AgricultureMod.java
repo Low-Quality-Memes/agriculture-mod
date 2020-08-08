@@ -1,6 +1,8 @@
 package me.onyx.agriculture;
 
 import me.onyx.agriculture.crops.CornCrop;
+import me.onyx.agriculture.items.ScytheBase;
+import me.onyx.agriculture.items.ScytheMaterial;
 import me.onyx.agriculture.plants.Tomato;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -27,6 +29,8 @@ public class AgricultureMod implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier("agriculture", "tomato"), new BlockItem(TOMATO, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
         Registry.register(Registry.BLOCK, new Identifier("agriculture", "corn_crop"), CORN_CROP);
         Registry.register(Registry.ITEM, new Identifier("agriculture", "corn_crop"), new BlockItem(CORN_CROP, new Item.Settings().group(ItemGroup.FOOD).food(new FoodComponent.Builder().hunger(3).saturationModifier(6f).build())));
+        Registry.register(Registry.ITEM, new Identifier("agriculture", "scythe"), new ScytheBase(new ScytheMaterial()));
+
         BlockRenderLayerMap.INSTANCE.putBlock(AgricultureMod.CORN_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(AgricultureMod.TOMATO, RenderLayer.getCutout());
 	}
